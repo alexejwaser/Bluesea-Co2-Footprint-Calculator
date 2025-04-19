@@ -13,3 +13,6 @@ Mit diesem Tool kannst du den individuellen oder betrieblichen CO₂-Fußabdruck
 - 🎨 **Modernes UI**: Cleanes Design in Blautönen & fließenden Farbverläufen  
 - 📱 **Responsive Design** für alle Geräte  
 - ♻️ Orientierung an Nachhaltigkeit und Benutzerfreundlichkeit
+
+
+-ChatGPT
