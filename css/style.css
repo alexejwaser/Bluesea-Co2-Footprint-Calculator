@@ -1,0 +1,789 @@
+/**
+ * style.css – Hauptstylesheet für CO₂-Rechner
+ * 
+ * Mobile-First Responsive Layout für eine mehrstufige CO₂-Fussabdruck-Berechnung
+ * 
+ * STRUKTUR:
+ * 1. CSS-Variablen (Corporate Design Farben)
+ * 2. Globale Styles und Reset
+ * 3. Layout-Komponenten (Header, Main, Footer)
+ * 4. Formular-Styles (Inputs, Buttons, Validierung)
+ * 5. Mehrstufiges Formular (Navigation, Fortschritt)
+ * 6. Ergebnisseite (Kreis-Animation, Kategorien, Vergleich)
+ * 7. Responsive Anpassungen
+ * 
+ * DESIGN-PRINZIPIEN:
+ * - Mobile-First Ansatz
+ * - Barrierefreie Bedienung
+ * - Moderne UI-Komponenten
+ * - Sanfte Animationen und Übergänge
+ */
+
+/* ===== 1. CSS-VARIABLEN: CORPORATE DESIGN FARBEN ===== */
+:root {
+  --ice-blue: #cce9f3; /* Helles Blau für Hintergründe */
+  --arktic-blue: #97d4e5; /* Mittleres Blau für Akzente */
+  --ocean-blue: #00b4d8; /* Hauptfarbe für Buttons und Links */
+  --midnight: #222651; /* Dunkles Blau für Text und Kontraste */
+  --text-color: #222651; /* Standard-Textfarbe */
+  --bg-light: #f9fafd; /* Heller Hintergrund für Container */
+}
+
+/* ===== 2. GLOBALE STYLES UND RESET ===== */
+* {
+  box-sizing: border-box; /* Einheitliches Box-Model */
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%; /* Vollhöhe für Flexbox-Layout */
+}
+
+body {
+  font-family: "Poppins", "Montserrat", sans-serif; /* Moderne, lesbare Schriftart */
+  font-size: 14px;
+  color: var(--text-color);
+  background-image: url("../images/gradient.webp"); /* Hintergrund-Gradient */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column; /* Flexbox für Sticky Footer */
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+  color: var(--bg-light); /* Standard-Linkfarbe */
+}
+
+img {
+  max-width: 100%; /* Responsive Bilder */
+  height: auto;
+}
+
+/* ===== 3. LAYOUT-KOMPONENTEN ===== */
+
+/* Header */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: var(--bg-light);
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.logo-container img {
+  width: 5vw; /* Responsive Logo-Grösse */
+  max-width: 120px;
+  min-width: 40px;
+}
+
+.site-nav a {
+  font-weight: 500;
+}
+
+/* Main Content Area */
+.site-main {
+  max-width: 800px; /* Maximale Breite für Lesbarkeit */
+  margin: 2rem auto;
+  padding: 0 1rem;
+  flex: 1; /* Nimmt verfügbaren Platz ein (Sticky Footer) */
+}
+
+h1 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.page-title {
+  color: var(--bg-light);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* ===== 4. FORMULAR-STYLES ===== */
+
+/* Formular-Container */
+form {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+fieldset {
+  border: 1px solid var(--arktic-blue);
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+legend {
+  font-weight: 600;
+  color: var(--midnight);
+  padding: 0 0.5rem;
+}
+
+/* Standard-Labels */
+label {
+  display: block;
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+/* ===== CUSTOM RADIO BUTTONS ===== */
+/* Ersetzt Standard-Radio-Buttons durch moderne, zugängliche Variante */
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  border: 2px solid #bbb;
+  border-radius: 8px; /* Abgerundete Ecken statt Kreis */
+  background: #fff;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  margin: 0;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+input[type="radio"]:checked {
+  border-color: var(--ocean-blue);
+  background: var(--ocean-blue);
+  box-shadow: 0 0 0 2px rgba(0, 180, 216, 0.2);
+}
+
+input[type="radio"]:focus {
+  border-color: var(--ocean-blue);
+  box-shadow: 0 0 0 2px rgba(0, 180, 216, 0.3);
+}
+
+input[type="radio"]:after {
+  content: "";
+  display: none;
+}
+
+input[type="radio"]:checked:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  transform: translate(-50%, -50%);
+}
+
+input[type="radio"]:checked:after {
+  /* Weisses Kreuz als Auswahlindikator */
+  background: none;
+}
+
+input[type="radio"]:checked::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 2px;
+  background: #fff;
+  border-radius: 1px;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+input[type="radio"]:checked::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 2px;
+  background: #fff;
+  border-radius: 1px;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Label-Anpassung für grössere Radio-Buttons */
+input[type="radio"] + label {
+  margin: 0 1.5rem 0 0.25rem;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  height: 28px;
+}
+
+/* Barrierefreiheit: Sichtbare Fokus-Anzeige für Tastatur-Navigation */
+input[type="radio"]:focus-visible {
+  outline: 2px solid var(--ocean-blue);
+  outline-offset: 2px;
+}
+
+/* ===== EINGABEFELDER ===== */
+input[type="number"],
+input[type="email"],
+select,
+input[type="range"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--ocean-blue);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  font-family: inherit; /* Einheitliche Schriftart */
+}
+
+.error {
+  color: red; /* Fehlermeldungen in Rot */
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* Range-Slider Wertanzeige */
+.range-value {
+  display: block;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-weight: 500;
+  color: var(--midnight);
+}
+
+/* ===== BUTTONS ===== */
+button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--ocean-blue);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+button:hover {
+  background-color: var(--midnight);
+}
+
+/* ===== FOOTER ===== */
+.site-footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--bg-light);
+  margin-top: 2rem;
+}
+
+/* Footer-Links sichtbar machen (überschreibt globale Link-Farbe) */
+.site-footer a {
+  color: var(--midnight);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.site-footer a:hover {
+  color: var(--ocean-blue);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (min-width: 600px) {
+  form {
+    padding: 2rem; /* Mehr Padding auf grösseren Bildschirmen */
+  }
+}
+
+/* ===== RADIO-BUTTON GRUPPIERUNG ===== */
+.radio-group {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 2rem;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+  gap: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .radio-group {
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .logo-container img {
+    width: 60px;
+    min-width: 40px;
+    max-width: 80px;
+  }
+}
+
+/* ===== CUSTOM RANGE SLIDER MIT GRADIENT ===== */
+/* Moderne Range-Slider mit Fortschritts-Gradient */
+input[type="range"] {
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  /* CSS Custom Property --progress wird von JavaScript gesetzt */
+  background: linear-gradient(90deg, #00b4d8 0%, #222651 100%) 0 /
+      var(--progress, 0%) 100% no-repeat,
+    #fff;
+  margin: 8px 0;
+  border: 1px solid var(--ocean-blue);
+}
+
+/* ===== WEBKIT BROWSER STYLES ===== */
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 8px;
+  background: transparent;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border: 3px solid var(--ocean-blue);
+  cursor: pointer;
+  margin-top: -10px;
+  position: relative;
+  z-index: 2;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px #97d4e5, 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== FIREFOX BROWSER STYLES ===== */
+input[type="range"]::-moz-range-track {
+  height: 8px;
+  border-radius: 8px;
+  background: transparent;
+}
+
+input[type="range"]::-moz-range-progress {
+  height: 8px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #00b4d8 0%, #222651 100%);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border: 3px solid var(--ocean-blue);
+  cursor: pointer;
+}
+
+/* ===== IE/EDGE BROWSER STYLES ===== */
+input[type="range"]::-ms-fill-lower {
+  background: linear-gradient(90deg, #00b4d8 0%, #222651 100%);
+  border-radius: 8px;
+}
+
+input[type="range"]::-ms-fill-upper {
+  background: transparent;
+  border-radius: 8px;
+}
+
+input[type="range"]::-ms-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border: 3px solid var(--ocean-blue);
+  cursor: pointer;
+}
+
+input[type="range"]:focus::-ms-thumb {
+  box-shadow: 0 0 0 3px #97d4e5, 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+input[type="range"]::-ms-tooltip {
+  display: none;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+/* ===== MEHRSTUFIGES FORMULAR: NAVIGATION ===== */
+
+/* Navigation-Container für Zurück/Weiter Buttons */
+.form-navigation {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.form-navigation .back-btn {
+  flex: 1 1 33%; /* Zurück-Button nimmt 1/3 der Breite */
+  background: #fff;
+  color: var(--midnight);
+  border: 2px solid var(--arktic-blue);
+  font-weight: 700;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  padding: 1rem 0;
+  cursor: pointer;
+  transition: border-color 0.18s, color 0.18s, background 0.18s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+.form-navigation .back-btn:hover {
+  background: #fff;
+  border-color: var(--ocean-blue);
+  color: var(--ocean-blue);
+}
+
+.form-navigation .next-btn,
+.form-navigation .submit-btn {
+  flex: 2 1 67%; /* Weiter/Submit-Button nimmt 2/3 der Breite */
+  background: linear-gradient(90deg, var(--ocean-blue) 0%, #48d9ff 100%);
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  padding: 1rem 0;
+  cursor: pointer;
+  transition: background 0.18s, border 0.18s, color 0.18s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.form-navigation .next-btn::after,
+.form-navigation .submit-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, #00566e 0%, var(--midnight) 100%);
+  opacity: 0;
+  transition: opacity 0.18s;
+  pointer-events: none;
+}
+
+.form-navigation .next-btn:hover::after,
+.form-navigation .submit-btn:hover::after {
+  opacity: 1; /* Hover-Effekt mit Overlay */
+}
+
+.form-navigation .next-btn span,
+.form-navigation .submit-btn span,
+.form-navigation .back-btn span {
+  position: relative;
+  z-index: 2; /* Text über Hover-Overlay */
+}
+
+/* ===== ERGEBNISSEITE STYLES ===== */
+
+.results-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* ===== CO₂-KREIS ANZEIGE ===== */
+.co2-circle {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.circle-outer {
+  width: 300px; /* Desktop-Grösse */
+  height: 300px;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: white;
+}
+
+/* Innerer Kreis bleibt über der Animation */
+.circle-outer .circle-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.circle-inner {
+  width: 66.66%; /* Proportional zum äusseren Kreis */
+  height: 66.66%;
+  background: var(--midnight);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.circle-inner h2 {
+  font-size: 2.5rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.circle-inner p {
+  font-size: 1rem;
+  margin: 0.5rem 0 0 0;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* ===== KATEGORIEN-AUFSCHLÜSSELUNG ===== */
+.category-breakdown {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.category-breakdown h2 {
+  color: var(--ocean-blue);
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.category-item {
+  margin-bottom: 1.5rem;
+}
+
+.category-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.category-name {
+  font-weight: 500;
+  color: var(--midnight);
+  font-size: 1.1rem;
+}
+
+.category-value {
+  font-weight: 600;
+  color: var(--midnight);
+  font-size: 1.1rem;
+}
+
+.category-bar {
+  height: 12px;
+  background: var(--ice-blue);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--ocean-blue) 0%,
+    var(--midnight) 100%
+  );
+  border-radius: 8px;
+  transition: width 0.8s ease-in-out;
+}
+
+/* ===== VERGLEICHSSEKTION ===== */
+.comparison-section {
+  background: var(--ice-blue);
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.comparison-section h2 {
+  color: var(--ocean-blue);
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.comparison-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.comparison-item {
+  flex: 1;
+}
+
+.percentage {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--midnight);
+  margin-bottom: 0.5rem;
+}
+
+.average-value {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--midnight);
+  margin-bottom: 0.5rem;
+}
+
+.comparison-divider {
+  width: 2px;
+  height: 80px;
+  background: var(--arktic-blue);
+  margin: 0 2rem;
+}
+
+.comparison-item p {
+  color: var(--midnight);
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* ===== ERGEBNIS-AKTIONEN ===== */
+.results-actions {
+  text-align: center;
+}
+
+.back-to-form {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: var(--ocean-blue);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.back-to-form:hover {
+  background: var(--midnight);
+  color: white;
+}
+
+/* Sekundärer Button für Broschüre-Link */
+.secondary-action-btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: #fff;
+  color: var(--midnight);
+  border: 2px solid var(--arktic-blue);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: border-color 0.18s, color 0.18s, background 0.18s;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.secondary-action-btn:hover {
+  background: #fff;
+  border-color: var(--ocean-blue);
+  color: var(--ocean-blue);
+}
+
+.secondary-action-btn .icon {
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+/* ===== RESPONSIVE ANPASSUNGEN FÜR ERGEBNISSE ===== */
+@media (max-width: 600px) {
+  .circle-outer {
+    width: 250px; /* Mobile Kreis-Grösse */
+    height: 250px;
+  }
+
+  .circle-inner {
+    /* Proportionale Grösse wird automatisch berechnet */
+  }
+
+  .circle-inner h2 {
+    font-size: 2rem;
+  }
+
+  .comparison-stats {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .comparison-divider {
+    width: 80%;
+    height: 2px;
+    margin: 0;
+  }
+
+  .percentage,
+  .average-value {
+    font-size: 2.5rem;
+  }
+}
+
+/* ===== EINGABEFELD FOKUS-STYLES ===== */
+input[type="number"]:focus,
+input[type="email"]:focus,
+select:focus {
+  border-color: var(--ocean-blue);
+  box-shadow: 0 0 0 2px rgba(0, 180, 216, 0.2);
+}
+
+input[type="number"] {
+  text-align: center; /* Zahlen zentriert anzeigen */
+}
+
+/* ===== FORTSCHRITTSBALKEN ===== */
+.form-progress {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #f0f0f0;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 25%; /* Initial: 25% (Schritt 1 von 4) */
+  background: linear-gradient(90deg, #00b4d8 0%, #222651 100%);
+  border-radius: 8px;
+  transition: width 0.3s ease;
+  position: relative;
+}
