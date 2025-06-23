@@ -1,6 +1,7 @@
 # 🌱 CO₂-Rechner
 
 Ein interaktiver CO₂-Fussabdruck-Rechner, der dir hilft, deinen persönlichen CO₂-Ausstoss zu berechnen und zu verstehen.
+
 Dies ist mein Abschlussprojekt für das Mediamatik Modul M307 "PHP".
 
 ## ✨ Features
