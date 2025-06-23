@@ -1,6 +1,7 @@
 # 🌱 CO₂-Rechner
 
-Ein interaktiver CO₂-Fußabdruck-Rechner, der dir hilft, deinen persönlichen CO₂-Ausstoß zu berechnen und zu verstehen.
+Ein interaktiver CO₂-Fussabdruck-Rechner, der dir hilft, deinen persönlichen CO₂-Ausstoss zu berechnen und zu verstehen.
+Dies ist mein Abschlussprojekt für das Mediamatik Modul M307 "PHP".
 
 ## ✨ Features
 
@@ -13,7 +14,7 @@ Ein interaktiver CO₂-Fußabdruck-Rechner, der dir hilft, deinen persönlichen 
 
 ### 🏠 Wohnen
 
-- 👥 **Haushaltsgröße** (1-10 Personen)
+- 👥 **Haushaltsgrösse** (1-10 Personen)
 - 📐 **Wohnfläche** in m²
 - 🔥 **Heizungsart** (Gas, Öl, Fernwärme, Wärmepumpe)
 - ⚡ **Energieverbrauch** pro Jahr
@@ -85,7 +86,7 @@ Das System verwendet **wissenschaftlich validierte Emissionsfaktoren**:
 
 ## 🎯 Ziel
 
-Sensibilisierung für den persönlichen CO₂-Fußabdruck und Motivation für nachhaltiges Handeln. 🌍💚
+Sensibilisierung für den persönlichen CO₂-Fussabdruck und Motivation für nachhaltiges Handeln. 🌍💚
 
 ---
 
