@@ -2,7 +2,7 @@
 
 Ein interaktiver CO₂-Fussabdruck-Rechner, für die fiktive Firma "Bluesea", der dir hilft, deinen persönlichen CO₂-Ausstoss zu berechnen und zu verstehen.
 
-Dies ist mein Abschlussprojekt für das Mediamatik-Modul M307 „PHP”, das von Roman Suter unterrichtet wurde.
+Dies ist mein Abschlussprojekt für das Mediamatik-Modul M307 „PHP”
 
 Ich habe das Projekt im Modul M431 geplant. 
 Das Corporate Design und die Broschüre für „Bluesea” habe ich im Modul M274 erstellt.
