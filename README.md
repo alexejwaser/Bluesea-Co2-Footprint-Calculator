@@ -1,8 +1,11 @@
 # 🌱 CO₂-Rechner
 
-Ein interaktiver CO₂-Fussabdruck-Rechner, der dir hilft, deinen persönlichen CO₂-Ausstoss zu berechnen und zu verstehen.
+Ein interaktiver CO₂-Fussabdruck-Rechner, für die fiktive Firma "Bluesea", der dir hilft, deinen persönlichen CO₂-Ausstoss zu berechnen und zu verstehen.
 
-Dies ist mein Abschlussprojekt für das Mediamatik Modul M307 "PHP".
+Dies ist mein Abschlussprojekt für das Mediamatik-Modul M307 „PHP”, das von Roman Suter unterrichtet wurde.
+
+Ich habe das Projekt im Modul M431 geplant. 
+Das Corporate Design und die Broschüre für „Bluesea” habe ich im Modul M274 erstellt.
 
 ## ✨ Features
 
@@ -85,10 +88,4 @@ Das System verwendet **wissenschaftlich validierte Emissionsfaktoren**:
 - 🍽️ Ernährung: 1300-2100 kg CO₂/Jahr (Basis)
 - 🛍️ Konsum: Variable Faktoren für Abfall & Kleidung
 
-## 🎯 Ziel
 
-Sensibilisierung für den persönlichen CO₂-Fussabdruck und Motivation für nachhaltiges Handeln. 🌍💚
-
----
-
-_Entwickelt für eine umweltbewusste Zukunft_ 🌱✨
