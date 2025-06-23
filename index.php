@@ -30,7 +30,7 @@ include 'includes/header.php';
 <!-- Seitentitel und Beschreibung -->
 <div class="page-title">
     <h1>CO₂-Rechner</h1>
-    <p>Berechne deinen CO₂-Fussabdruck und erfahre, wie du deinen Fsabdruck reduzieren kannst.</p>
+    <p>Berechne deinen CO₂-Fussabdruck und erfahre, wie du deinen Fussabdruck reduzieren kannst.</p>
 </div>
 
 <!-- Hauptformular - wird an process.php gesendet -->
