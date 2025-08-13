@@ -1,91 +1,44 @@
-# 🌱 CO₂-Rechner
+# 🌊 Bluesea CO₂ Footprint Calculator
 
-Ein interaktiver CO₂-Fussabdruck-Rechner, für die fiktive Firma "Bluesea", der dir hilft, deinen persönlichen CO₂-Ausstoss zu berechnen und zu verstehen.
+![PHP](https://img.shields.io/badge/PHP-8.2-blue?logo=php)
+![Status](https://img.shields.io/badge/status-experimental-orange)
+![Contributions](https://img.shields.io/badge/contributions-welcome-brightgreen)
 
-Dies ist mein Abschlussprojekt für das Mediamatik-Modul M307 „PHP”
+Interaktiver CO₂-Fussabdruck-Rechner für die fiktive Firma **Bluesea**. Berechne deinen persönlichen Ausstoss in wenigen Klicks.
 
-Ich habe das Projekt im Modul M431 geplant. 
-Das Corporate Design und die Broschüre für „Bluesea” habe ich im Modul M274 erstellt.
+## 📚 Inhalt
+- [Features](#-features)
+- [Technologie](#-technologie)
+- [Projektstruktur](#-projektstruktur)
+- [Installation](#-installation)
 
 ## ✨ Features
+- 🧭 Mehrstufiges Formular mit Fortschrittsanzeige
+- 📱 Responsives Design für alle Geräte
+- ✅ Client- & Server-validierte Eingaben
+- 📊 Wissenschaftlich basierte Emissionsfaktoren
 
-### 📊 Mehrstufiges Formular
+## 🛠️ Technologie
+- **Backend:** PHP mit Sessions
+- **Frontend:** HTML5, CSS3 & JavaScript  
+  `progress.js`, `sliders.js`, `validation.js`, `diet-logic.js`, `animations.js`
 
-- **4 Kategorien**: Wohnen, Mobilität, Lifestyle & Kontakt
-- **📈 Fortschrittsanzeige** mit visueller Navigation
-- **🔄 Responsive Design** für alle Geräte
-- **✅ Client & Server-seitige Validierung**
-
-### 🏠 Wohnen
-
-- 👥 **Haushaltsgrösse** (1-10 Personen)
-- 📐 **Wohnfläche** in m²
-- 🔥 **Heizungsart** (Gas, Öl, Fernwärme, Wärmepumpe)
-- ⚡ **Energieverbrauch** pro Jahr
-
-### 🚗 Mobilität
-
-- 🚙 **Fahrzeugtyp** (Benzin, Diesel, Hybrid, Elektro, kein Auto)
-- 🛣️ **PKW-Kilometer** pro Jahr
-- 🚌 **Öffentlicher Verkehr** (km/Woche)
-- ✈️ **Flugreisen** (Anzahl & Distanz pro Jahr)
-
-### 🥗 Lifestyle
-
-- 🍽️ **Ernährungsweise** (Omnivor, Vegetarisch, Vegan)
-- 🥩 **Fleischkonsum** (Portionen/Woche) - _automatisch ausgeblendet bei vegetarisch/vegan_
-- 🗑️ **Abfallmenge** pro Woche
-- 👕 **Kleidungskonsum** pro Jahr
-
-### 📧 Kontakt
-
-- 📬 **E-Mail** für Ergebnisversendung
-
-## 🔧 Technische Details
-
-### 💻 Backend
-
-- **PHP** für Datenverarbeitung und Validierung
-- **Session-Management** für Fehlerbehandlung
-- **Wissenschaftliche Emissionsfaktoren** für präzise Berechnungen
-- **Schweizer Durchschnittswerte** als Vergleichsbasis
-
-### 🎨 Frontend
-
-- **Responsive CSS** mit modernem Design
-- **JavaScript** für interaktive Elemente:
-  - `progress.js` - Mehrstufige Navigation
-  - `sliders.js` - Range-Slider Funktionalität
-  - `validation.js` - Client-seitige Validierung
-  - `diet-logic.js` - Bedingte Feldanzeige
-  - `animations.js` - UI-Animationen
-
-### 📁 Struktur
-
+## 🗂️ Projektstruktur
 ```
-├── index.php          # Hauptformular
-├── process.php         # Datenverarbeitung & CO₂-Berechnung
-├── confirmation.php    # Ergebnisseite
-├── css/               # Styling
-├── js/                # JavaScript-Funktionalität
-├── includes/          # PHP-Templates
-└── images/            # Assets & Icons
+├── index.php
+├── process.php
+├── confirmation.php
+├── css/
+├── js/
+├── includes/
+└── images/
 ```
 
 ## 🚀 Installation
+1. Starte XAMPP oder einen anderen PHP-Server.
+2. Kopiere das Projekt in das `htdocs` Verzeichnis.
+3. Öffne `http://localhost/` im Browser.
 
-1. **XAMPP** oder ähnlichen PHP-Server starten
-2. Dateien in `htdocs` Verzeichnis kopieren
-3. `http://localhost/` aufrufen
-4. **Fertig!** 🎉
+---
 
-## 🧮 CO₂-Berechnung
-
-Das System verwendet **wissenschaftlich validierte Emissionsfaktoren**:
-
-- 🏠 Heizung: 0.0117-0.266 kg CO₂/kWh
-- 🚗 Transport: 0-0.180 kg CO₂/km
-- 🍽️ Ernährung: 1300-2100 kg CO₂/Jahr (Basis)
-- 🛍️ Konsum: Variable Faktoren für Abfall & Kleidung
-
-
+🍀 Viel Spaß beim CO₂-Sparen!
