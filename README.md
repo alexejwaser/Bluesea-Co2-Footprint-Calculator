@@ -2,7 +2,6 @@
 
 ![PHP](https://img.shields.io/badge/PHP-8.2-blue?logo=php)
 ![Status](https://img.shields.io/badge/status-experimental-orange)
-![Contributions](https://img.shields.io/badge/contributions-welcome-brightgreen)
 
 Interaktiver CO₂-Fussabdruck-Rechner für die fiktive Firma **Bluesea**. Berechne deinen persönlichen Ausstoss in wenigen Klicks.
 
