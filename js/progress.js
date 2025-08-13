@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
    */
   const steps = document.querySelectorAll(".form-steps fieldset"); // Alle Formularschritte
   const progressFill = document.querySelector(".progress-fill"); // Fortschrittsbalken-Füllung
+  const progressBar = document.querySelector(".progress-bar"); // Wrapper für ARIA-Attribute
 
   /**
    * FUNKTION: FORTSCHRITTSBALKEN AKTUALISIEREN
@@ -32,12 +33,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // +1 weil stepIndex 0-basiert ist, aber wir Schritt 1-4 anzeigen wollen
     const progressPercentage = ((stepIndex + 1) / steps.length) * 100;
 
-    if (progressFill) {
+    if (progressFill && progressBar) {
       // CSS width-Property setzen für visuelle Darstellung
       progressFill.style.width = progressPercentage + "%";
+      progressBar.setAttribute("aria-valuenow", progressPercentage.toFixed(0));
+      progressBar.setAttribute(
+        "aria-valuetext",
+        `Schritt ${stepIndex + 1} von ${steps.length}`
+      );
       console.log("Progress bar width set to:", progressPercentage + "%");
     } else {
-      console.error("Progress fill element not found!");
+      console.error("Progress elements not found!");
     }
   }
 
