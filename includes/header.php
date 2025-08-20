@@ -28,7 +28,7 @@
 <body>
     <header class="site-header">
         <div class="logo-container centered">
-            <a href="../index.php"><img src="../images/logo.svg" alt="Bluesea Logo"></a>
+            <a href="index.php"><img src="images/logo.svg" alt="Bluesea Logo"></a>
         </div>
     </header>
     <main class="site-main">

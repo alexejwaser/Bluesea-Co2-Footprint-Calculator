@@ -243,7 +243,7 @@ select,
 input[type="range"] {
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid var(--ocean-blue);
+  border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
   outline: none;
@@ -755,8 +755,8 @@ input[type="range"]:focus {
 input[type="number"]:focus,
 input[type="email"]:focus,
 select:focus {
-  border-color: var(--ocean-blue);
-  box-shadow: 0 0 0 2px rgba(0, 180, 216, 0.2);
+  border-color: var(--midnight);
+  box-shadow: 0 0 0 2px rgba(34, 38, 81, 0.2);
 }
 
 input[type="number"] {

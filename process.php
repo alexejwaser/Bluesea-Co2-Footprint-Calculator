@@ -17,35 +17,37 @@
 // Session starten für Datenaustausch zwischen Seiten
 session_start();
 
-// Arrays für Fehler und validierte Werte initialisieren
+$data = $_SESSION['form_data'] ?? [];
+if (!$data) {
+    header('Location: index.php');
+    exit;
+}
+
 $errors = [];
 $values = [];
 
-/**
- * TEIL 1: VALIDIERUNG ALLER FORMULAREINGABEN
- * Jedes Feld wird einzeln validiert mit spezifischen Bereichen und Datentypen
- */
-
 // 1. Haushaltsgrösse (1-10 Personen)
-$household_size = filter_input(INPUT_POST, 'household_size', FILTER_VALIDATE_INT, [
-    'options' => ['min_range' => 0, 'max_range' => 10]
-]);
-if ($household_size === false || $household_size === null) {
-    $errors['household_size'] = 'Ungültiger Wert (0–10).';
-} else {
-    $values['household_size'] = $household_size;
+$values['household_size'] = filter_var(
+    $data['household_size'] ?? null,
+    FILTER_VALIDATE_INT,
+    ['options' => ['min_range' => 1, 'max_range' => 10]]
+);
+if ($values['household_size'] === false) {
+    $errors['household_size'] = 'Ungültiger Wert (1–10).';
 }
 
 // 2. Wohnfläche (0-1000 m²)
-$living_area = filter_input(INPUT_POST, 'living_area', FILTER_VALIDATE_FLOAT);
-if ($living_area === false || $living_area < 0 || $living_area > 1000) {
+$values['living_area'] = filter_var($data['living_area'] ?? null, FILTER_VALIDATE_FLOAT);
+if (
+    $values['living_area'] === false ||
+    $values['living_area'] < 0 ||
+    $values['living_area'] > 1000
+) {
     $errors['living_area'] = 'Bitte Fläche zwischen 0 und 1000 angeben.';
-} else {
-    $values['living_area'] = $living_area;
 }
 
 // 3. Heizungsart (vordefinierte Optionen)
-$heating_type = $_POST['heating_type'] ?? '';
+$heating_type = $data['heating_type'] ?? '';
 $valid_heating_types = ['gas', 'oil', 'district', 'heatpump'];
 if (!in_array($heating_type, $valid_heating_types, true)) {
     $errors['heating_type'] = 'Bitte Heizungsart wählen.';
@@ -54,15 +56,17 @@ if (!in_array($heating_type, $valid_heating_types, true)) {
 }
 
 // 4. Energieverbrauch (0-200'000 kWh/Jahr)
-$energy_consumption = filter_input(INPUT_POST, 'energy_consumption', FILTER_VALIDATE_INT);
-if ($energy_consumption === false || $energy_consumption < 0 || $energy_consumption > 200000) {
+$values['energy_consumption'] = filter_var($data['energy_consumption'] ?? null, FILTER_VALIDATE_INT);
+if (
+    $values['energy_consumption'] === false ||
+    $values['energy_consumption'] < 0 ||
+    $values['energy_consumption'] > 200000
+) {
     $errors['energy_consumption'] = 'Wert zwischen 0 und 200000 erforderlich.';
-} else {
-    $values['energy_consumption'] = $energy_consumption;
 }
 
 // 5. Fahrzeugtyp (vordefinierte Optionen)
-$car_type = $_POST['car_type'] ?? '';
+$car_type = $data['car_type'] ?? '';
 $valid_car_types = ['none', 'petrol', 'diesel', 'hybrid', 'electric'];
 if (!in_array($car_type, $valid_car_types, true)) {
     $errors['car_type'] = 'Bitte Fahrzeugtyp wählen.';
@@ -71,41 +75,47 @@ if (!in_array($car_type, $valid_car_types, true)) {
 }
 
 // 6. PKW-Kilometer pro Jahr (0-100'000 km)
-$car_distance = filter_input(INPUT_POST, 'car_distance', FILTER_VALIDATE_INT);
-if ($car_distance === false || $car_distance < 0 || $car_distance > 100000) {
+$values['car_distance'] = filter_var($data['car_distance'] ?? null, FILTER_VALIDATE_INT);
+if (
+    $values['car_distance'] === false ||
+    $values['car_distance'] < 0 ||
+    $values['car_distance'] > 100000
+) {
     $errors['car_distance'] = 'Wert zwischen 0 und 100000 nötig.';
-} else {
-    $values['car_distance'] = $car_distance;
 }
 
 // 7. Öffentlicher Verkehr (0-2000 km/Woche)
-$public_transport_km = filter_input(INPUT_POST, 'public_transport_km', FILTER_VALIDATE_INT);
-if ($public_transport_km === false || $public_transport_km < 0 || $public_transport_km > 2000) {
+$values['public_transport_km'] = filter_var($data['public_transport_km'] ?? null, FILTER_VALIDATE_INT);
+if (
+    $values['public_transport_km'] === false ||
+    $values['public_transport_km'] < 0 ||
+    $values['public_transport_km'] > 2000
+) {
     $errors['public_transport_km'] = 'Wert zwischen 0 und 2000 nötig.';
-} else {
-    $values['public_transport_km'] = $public_transport_km;
 }
 
 // 8. Flugreisen pro Jahr (0-20 Flüge)
-$flights_per_year = filter_input(INPUT_POST, 'flights_per_year', FILTER_VALIDATE_INT, [
-    'options' => ['min_range' => 0, 'max_range' => 20]
-]);
-if ($flights_per_year === false || $flights_per_year === null) {
+$values['flights_per_year'] = filter_var(
+    $data['flights_per_year'] ?? null,
+    FILTER_VALIDATE_INT,
+    ['options' => ['min_range' => 0, 'max_range' => 20]]
+);
+if ($values['flights_per_year'] === false) {
     $errors['flights_per_year'] = '0–20 erlaubt.';
-} else {
-    $values['flights_per_year'] = $flights_per_year;
 }
 
 // 9. Durchschnittliche Flugdistanz (0-20'000 km)
-$avg_flight_distance = filter_input(INPUT_POST, 'avg_flight_distance', FILTER_VALIDATE_INT);
-if ($avg_flight_distance === false || $avg_flight_distance < 0 || $avg_flight_distance > 20000) {
+$values['avg_flight_distance'] = filter_var($data['avg_flight_distance'] ?? null, FILTER_VALIDATE_INT);
+if (
+    $values['avg_flight_distance'] === false ||
+    $values['avg_flight_distance'] < 0 ||
+    $values['avg_flight_distance'] > 20000
+) {
     $errors['avg_flight_distance'] = 'Wert zwischen 0 und 20000 nötig.';
-} else {
-    $values['avg_flight_distance'] = $avg_flight_distance;
 }
 
 // 10. Ernährungsweise (vordefinierte Optionen)
-$diet_type = $_POST['diet_type'] ?? '';
+$diet_type = $data['diet_type'] ?? '';
 $valid_diet_types = ['omnivore', 'vegetarian', 'vegan'];
 if (!in_array($diet_type, $valid_diet_types, true)) {
     $errors['diet_type'] = 'Bitte Ernährungsweise wählen.';
@@ -114,50 +124,52 @@ if (!in_array($diet_type, $valid_diet_types, true)) {
 }
 
 // 11. Fleischportionen pro Woche (0-21 Portionen)
-$meat_servings = filter_input(INPUT_POST, 'meat_servings', FILTER_VALIDATE_INT, [
-    'options' => ['min_range' => 0, 'max_range' => 21]
-]);
-if ($meat_servings === false || $meat_servings === null) {
+$values['meat_servings'] = filter_var(
+    $data['meat_servings'] ?? null,
+    FILTER_VALIDATE_INT,
+    ['options' => ['min_range' => 0, 'max_range' => 21]]
+);
+if ($values['meat_servings'] === false) {
     $errors['meat_servings'] = '0–21 erlaubt.';
-} else {
-    $values['meat_servings'] = $meat_servings;
 }
 
 // 12. Wöchentliche Abfallmenge (0-50 kg)
-$weekly_waste = filter_input(INPUT_POST, 'weekly_waste', FILTER_VALIDATE_INT, [
-    'options' => ['min_range' => 0, 'max_range' => 50]
-]);
-if ($weekly_waste === false || $weekly_waste === null) {
+$values['weekly_waste'] = filter_var(
+    $data['weekly_waste'] ?? null,
+    FILTER_VALIDATE_INT,
+    ['options' => ['min_range' => 0, 'max_range' => 50]]
+);
+if ($values['weekly_waste'] === false) {
     $errors['weekly_waste'] = '0–50 erlaubt.';
-} else {
-    $values['weekly_waste'] = $weekly_waste;
 }
 
 // 13. Kleidungsstücke pro Jahr (0-100 Stück)
-$clothing_items = filter_input(INPUT_POST, 'clothing_items', FILTER_VALIDATE_INT, [
-    'options' => ['min_range' => 0, 'max_range' => 100]
-]);
-if ($clothing_items === false || $clothing_items === null) {
+$values['clothing_items'] = filter_var(
+    $data['clothing_items'] ?? null,
+    FILTER_VALIDATE_INT,
+    ['options' => ['min_range' => 0, 'max_range' => 100]]
+);
+if ($values['clothing_items'] === false) {
     $errors['clothing_items'] = '0–100 erlaubt.';
-} else {
-    $values['clothing_items'] = $clothing_items;
 }
 
 // 14. E-Mail-Adresse (gültige E-Mail, max. 100 Zeichen)
-$email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-if ($email === false || strlen($_POST['email']) > 100) {
+$email = filter_var($data['email'] ?? '', FILTER_VALIDATE_EMAIL);
+if ($email === false || strlen($data['email'] ?? '') > 100) {
     $errors['email'] = 'Bitte gültige E-Mail bis 100 Zeichen.';
 } else {
     $values['email'] = htmlspecialchars(trim($email), ENT_QUOTES);
 }
 
-// Bei Validierungsfehlern: Zurück zum Formular mit Fehlermeldungen
 if ($errors) {
     $_SESSION['errors'] = $errors;
-    $_SESSION['values'] = $values;
+    $_SESSION['form_data'] = array_merge($data, $values);
     header('Location: index.php');
     exit;
 }
+
+// Validierte Werte als einzelne Variablen verfügbar machen
+extract($values);
 
 /**
  * TEIL 2: CO₂-FUSSABDRUCK BERECHNUNG
