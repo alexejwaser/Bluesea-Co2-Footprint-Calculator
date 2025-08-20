@@ -61,10 +61,17 @@ include 'includes/header.php';
 
 <div class="page-title">
     <h1>CO₂-Rechner</h1>
-    <p>Schritt 3 von 4 – Lifestyle</p>
+    <p>Berechne deinen CO₂-Fussabdruck und erfahre, wie du deinen Fussabdruck reduzieren kannst.</p>
 </div>
 
 <form method="post" autocomplete="off">
+    <div class="form-progress">
+        <div class="progress-bar">
+            <div class="progress-fill" style="width:75%"></div>
+        </div>
+        <p>Schritt 3 von 4 – Lifestyle</p>
+    </div>
+
     <fieldset>
         <legend>Lifestyle</legend>
 
@@ -96,8 +103,8 @@ include 'includes/header.php';
     </fieldset>
 
     <div class="form-navigation">
-        <button type="button" onclick="location.href='step2.php'">Zurück</button>
-        <button type="submit">Weiter</button>
+        <button type="button" class="back-btn" onclick="location.href='step2.php'"><span>Zurück</span></button>
+        <button type="submit" class="next-btn"><span>Weiter</span></button>
     </div>
 </form>
 

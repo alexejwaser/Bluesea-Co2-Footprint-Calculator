@@ -57,10 +57,17 @@ include 'includes/header.php';
 
 <div class="page-title">
     <h1>CO₂-Rechner</h1>
-    <p>Schritt 1 von 4 – Wohnen</p>
+    <p>Berechne deinen CO₂-Fussabdruck und erfahre, wie du deinen Fussabdruck reduzieren kannst.</p>
 </div>
 
 <form method="post" autocomplete="off">
+    <div class="form-progress">
+        <div class="progress-bar">
+            <div class="progress-fill" style="width:25%"></div>
+        </div>
+        <p>Schritt 1 von 4 – Wohnen</p>
+    </div>
+
     <fieldset>
         <legend>Wohnen</legend>
 
@@ -98,7 +105,9 @@ include 'includes/header.php';
         <span class="error"><?= $errors['energy_consumption'] ?? '' ?></span>
     </fieldset>
 
-    <button type="submit">Weiter</button>
+    <div class="form-navigation">
+        <button type="submit" class="next-btn"><span>Weiter</span></button>
+    </div>
 </form>
 
 <script src="js/sliders.js"></script>
